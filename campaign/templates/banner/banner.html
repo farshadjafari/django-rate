@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'banner/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+
+      </a>
+    </div>
+  </div>
+</nav>
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4" >
+          <img class="img-rounded" src="/static/banner/images/image_{{banner_id}}.png">
+
+          <table class="table table-striped">
+            <thead>
+              <th>banner</th>
+              <th>total revenue</th>
+              <th>total clicks</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ banner_id }}</td>
+                <td>{{ total_revenue }}</td>
+                <td>{{ total_clicks }}</td>
+              </tr>
+            </tbody>
+          </table>
+          {%if reserved %}
+            <p>not available till - {{ remain_time }}</p>
+          {%else%}
+            <form class="form-inline" action="" method="post">
+            {%csrf_token%}
+                   <h3> how long you want to use this service?</h3>
+                   <br>
+              <div class="form-group">
+                  <label for="exampleInputName2">Hour</label>
+                  <input class="form-control" id="exampleInputName2" type="number" name="hour" min="1" max="24">
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputName1">Min</label>
+              <input class="form-control" id="exampleInputName1"  type="number" name="minute" min="1" max="59">
+              </div>
+              <button type="submit" class="btn btn-default">Reserve</button>
+            </form>
+          {%endif%}
+        </div>
+      </div>
+      <hr>
+
+      <footer>
+        <p>&copy; 2015 Company, Inc.</p>
+      </footer>
+    </div> <!-- /container -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'banner/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>
