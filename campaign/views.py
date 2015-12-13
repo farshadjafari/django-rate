@@ -10,7 +10,7 @@ db = client.agency
 
 
 def home(request):
-    answer = db.impressions_3.find().distinct("campaign_id")
+    answer = db.imp_4.find().distinct("campaign_id")
     return render(request, 'banner/index.html', {'answer': answer})
 
 def campaign(request, campaign_id):
